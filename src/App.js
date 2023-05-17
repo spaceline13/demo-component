@@ -11,7 +11,7 @@ function App() {
         <Routes>
             {/* your routes here */}
             <Route path={'/preview'} element={<FEAAS.External.Preview data={{test:'test'}}/>} />
-            <Route path={'/slider'} element={<Slider items={[1,2,3,4]} active={1}/>} />
+            <Route path={'/'} element={<Slider items={[1,2,3,4]} active={1}/>} />
         </Routes>
     )
 }
