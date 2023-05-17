@@ -6,7 +6,8 @@ class Item extends React.Component {
     super(props);
     this.state = {
       content: this.props.items.map(item=>item.description),
-      title: this.props.items.map(item=>item.title)
+      title: this.props.items.map(item=>item.title),
+      image: this.props.items.map(item=>item.image1)
     }
   }
   render() {
@@ -23,8 +24,8 @@ class Item extends React.Component {
             backgroundPosition: 'center',
             backgroundImage: 'url("https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2022&q=80")'
           }}>
-            <h1 style={{marginTop:'2px', padding:'0px 50px', fontSize:'40px'}}>{this.state.title[item]}</h1>
-            <p style={{marginTop:0, fontSize: '20px', fontWeight:400, padding:'0px 60px'}}>
+            <h1 style={{marginTop:'2px', padding:'0px 50px', fontSize:'35px'}}>{this.state.title[item]}</h1>
+            <p style={{marginTop:0, fontSize: '25px', fontWeight:400, padding:'0px 60px'}}>
               {this.state.content[item]}
               {this.props.buttons === "show" && (<div>
                 <button style={{
@@ -47,8 +48,8 @@ class Item extends React.Component {
       return (
           <div className={className} id={id}  style={{display: 'flex', flexDirection: 'row'}}>
             <div style={{width:'50%', display:'flex', flexDirection:'column', alignSelf: 'center'}}>
-              <h1 style={{marginTop:'2px', fontSize:'40px'}}>{this.state.title[item]}</h1>
-              <p style={{marginTop:0, fontSize: '20px', fontWeight:400, padding:'10px'}}>
+              <h1 style={{marginTop:'2px', fontSize:'35px'}}>{this.state.title[item]}</h1>
+              <p style={{marginTop:0, fontSize: '25px', fontWeight:400, padding:'10px'}}>
                 {this.state.content[item]}
                 {this.props.buttons === "show"  && (<div>
                   <button style={{
@@ -108,6 +109,14 @@ class Slider extends React.Component {
             '          title\n' +
             '          subheadline\n' +
             '          description\n' +
+            '          image1 {\n' +
+            '              results{\n' +
+            '                  id\n' +
+            '                  name\n' +
+            '                  fileUrl\n' +
+            '                  fileType\n' +
+            '              }\n' +
+            '          }' +
             '    }\n' +
             '}\n' +
             '}'
