@@ -26,7 +26,7 @@ class Item extends React.Component {
             <h1 style={{marginTop:'2px', padding:'0px 50px', fontSize:'40px'}}>{this.state.title[item]}</h1>
             <p style={{marginTop:0, fontSize: '20px', fontWeight:400, padding:'0px 60px'}}>
               {this.state.content[item]}
-              {!this.props.noButtons && (<div>
+              {this.props.buttons === "show" && (<div>
                 <button style={{
                   marginTop: '18px',
                   display: 'inline',
@@ -50,7 +50,7 @@ class Item extends React.Component {
               <h1 style={{marginTop:'2px', fontSize:'40px'}}>{this.state.title[item]}</h1>
               <p style={{marginTop:0, fontSize: '20px', fontWeight:400, padding:'10px'}}>
                 {this.state.content[item]}
-                {!this.props.noButtons && (<div>
+                {this.props.buttons === "show"  && (<div>
                   <button style={{
                     marginTop: '18px',
                     display: 'inline',
@@ -129,7 +129,7 @@ class Slider extends React.Component {
 
       level = -(this.state.active - i);
 
-      items.push(<Item key={index} id={index} level={level} items={this.state.items} variant={this.props.variant} noButtons={this.props.noButtons} />);
+      items.push(<Item key={index} id={index} level={level} items={this.state.items} variant={this.props.variant} buttons={this.props.buttons} />);
 
     }
     return items;
@@ -188,9 +188,20 @@ const schema = {
   type: 'object',
   required: [],
   properties: {
-    noButtons: {
-      title: 'Hide button',
-      type: 'boolean'
+    buttons: {
+      title: 'Button visibility',
+      type: 'string',
+      default: 'show',
+      oneOf: [
+        {
+          const: 'show',
+          title: 'Show'
+        },
+        {
+          const: 'hide',
+          title: 'Hide'
+        }
+      ]
     },
     variant: {
       title: 'Layout variant',
