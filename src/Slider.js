@@ -27,7 +27,7 @@ class Item extends React.Component {
             <h1 style={{marginTop:'2px', padding:'0px 50px', fontSize:'35px'}}>{this.state.title[item]}</h1>
             <p style={{marginTop:0, fontSize: '25px', fontWeight:400, padding:'0px 60px'}}>
               {this.state.content[item]}
-              {this.props.buttons === "show" && (<div>
+              {this.props.buttons !== "hide" && (<div>
                 <button style={{
                   marginTop: '18px',
                   display: 'inline',
@@ -51,7 +51,7 @@ class Item extends React.Component {
               <h1 style={{marginTop:'2px', fontSize:'35px'}}>{this.state.title[item]}</h1>
               <p style={{marginTop:0, fontSize: '25px', fontWeight:400, padding:'10px'}}>
                 {this.state.content[item]}
-                {this.props.buttons === "show"  && (<div>
+                {this.props.buttons !== "hide"  && (<div>
                   <button style={{
                     marginTop: '18px',
                     display: 'inline',
