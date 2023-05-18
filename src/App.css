@@ -6,20 +6,20 @@ body {
 }
 
 #root {
-  width: 1000px;
+  width: 750px;
   overflow: hidden;
 }
 
 #container {
   width: 4000px;
-  height: 500px;
+  height: 450px;
   position: relative;
   overflow: hidden;
 }
 
 button {
   position: absolute;
-  top: 250px;
+  top: 225px;
   background: none;
   border: none;
   font-size: 30px;
@@ -35,14 +35,14 @@ button#left {
 }
 
 button#right {
-  left: 940px;
+  left: 710px;
 }
 
 .item {
-  width: 1000px;
+  width: 750px;
   float: left;
   background: #fff;
-  height: 500px;
+  height: 450px;
   transition: all 1s;
   text-align: center;
   color: #000000;
@@ -61,7 +61,7 @@ button#right {
 }
 
 .level-1 {
-  left: -1000px;
+  left: -750px;
 }
 
 .level0 {
@@ -69,5 +69,5 @@ button#right {
 }
 
 .level1 {
-  left: 1000px;
+  left: 750px;
 }
