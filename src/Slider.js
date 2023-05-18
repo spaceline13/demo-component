@@ -15,7 +15,7 @@ class Item extends React.Component {
     const item = this.props.id;
     const id = "slide" + this.props.id.toString();
 
-    if (this.props.variant === 'primary') {
+    if (this.props.variant !== 'secondary') {
       return (
           <div className={className} id={id} style={{
             color:'white',
