@@ -1,5 +1,6 @@
 import React from 'react'
 import * as FEAAS from "@sitecore-feaas/clientside/react"
+import {fetchData} from "./fetchData";
 
 class Item extends React.Component {
   constructor(props) {
@@ -22,12 +23,12 @@ class Item extends React.Component {
             display:'flex', flexDirection:'column', justifyContent: 'center',
             backgroundSize: '100%',
             backgroundPosition: 'center',
-            backgroundImage: 'url("https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2022&q=80")'
+            backgroundImage: `url("${this.state.image[item]?.results?.[0]?.fileUrl}")`
           }}>
             <h1 style={{marginTop:'2px', padding:'0px 50px', fontSize:'35px'}}>{this.state.title[item]}</h1>
             <p style={{marginTop:0, fontSize: '25px', fontWeight:400, padding:'0px 60px'}}>
               {this.state.content[item]}
-              {this.props.buttons !== "hide" && (<div>
+              {this.props.noButtons !== 'true' && (<div>
                 <button style={{
                   marginTop: '18px',
                   display: 'inline',
@@ -51,7 +52,7 @@ class Item extends React.Component {
               <h1 style={{marginTop:'2px', fontSize:'35px'}}>{this.state.title[item]}</h1>
               <p style={{marginTop:0, fontSize: '25px', fontWeight:400, padding:'10px'}}>
                 {this.state.content[item]}
-                {this.props.buttons !== "hide"  && (<div>
+                {this.props.noButtons !== 'true'  && (<div>
                   <button style={{
                     marginTop: '18px',
                     display: 'inline',
@@ -70,9 +71,7 @@ class Item extends React.Component {
           <div style={{width:'50%',
             backgroundSize: '1000px',
             backgroundPosition: 'center',
-            backgroundImage: 'url("https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2022&q=80")'
-          }}>
-
+            backgroundImage: `url("${this.state.image[item]?.results?.[0]?.fileUrl}")` }}>
           </div>
           </div>
       );
@@ -93,36 +92,7 @@ class Slider extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://edge-staging.sitecore-staging.cloud/api/graphql/v1', {
-      method: 'POST',
-      headers: {
-        'x-gql-token': 'K0VNcXpkZHZDZTFBYkJWVjl2aFdLeHpBYkxodWVscXN4cXBHbWQ4bEV0TT18aGMtY29tcG9uZW50cy0wY2UxMA==',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        query: '{\n' +
-            'allTestTeaserText {\n' +
-            '  results {\n' +
-            '          id \n' +
-            '          name \n' +
-            '          __sysCreatedAt\n' +
-            '          title\n' +
-            '          subheadline\n' +
-            '          description\n' +
-            '          buttonLabel\n' +
-            '          image1 {\n' +
-            '              results{\n' +
-            '                  id\n' +
-            '                  name\n' +
-            '                  fileUrl\n' +
-            '                  fileType\n' +
-            '              }\n' +
-            '          }' +
-            '    }\n' +
-            '}\n' +
-            '}'
-      })
-    }).then(res=>res.json()).then(res=>this.setState({items: res.data.allTestTeaserText.results}))
+    fetchData().then(res=>this.setState(res))
   }
 
   generateItems() {
@@ -139,7 +109,7 @@ class Slider extends React.Component {
 
       level = -(this.state.active - i);
 
-      items.push(<Item key={index} id={index} level={level} items={this.state.items} variant={this.props.variant} buttons={this.props.buttons} />);
+      items.push(<Item key={index} id={index} level={level} items={this.state.items} variant={this.props.variant} noButtons={this.props.noButtons} />);
 
     }
     return items;
@@ -193,25 +163,15 @@ class Slider extends React.Component {
 }
 
 const schema = {
-  title: 'MyComponent',
-  description: 'Description of MyComponent.',
+  title: 'Slider',
+  description: 'Edit slider options:',
   type: 'object',
   required: [],
   properties: {
-    buttons: {
-      title: 'Button visibility',
-      type: 'string',
-      default: 'show',
-      oneOf: [
-        {
-          const: 'show',
-          title: 'Show'
-        },
-        {
-          const: 'hide',
-          title: 'Hide'
-        }
-      ]
+    noButtons: {
+      title: 'Hide button',
+      type: 'boolean',
+      default: false,
     },
     variant: {
       title: 'Layout variant',
