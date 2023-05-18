@@ -109,6 +109,7 @@ class Slider extends React.Component {
             '          title\n' +
             '          subheadline\n' +
             '          description\n' +
+            '          buttonLabel\n' +
             '          image1 {\n' +
             '              results{\n' +
             '                  id\n' +
