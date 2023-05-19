@@ -132,7 +132,13 @@ class Slider extends React.Component {
     return (
         <div id="container">
           {this.generateItems()}
-          <button id="left" style={{background: 'rgba(0, 0, 0, 0.3)', borderRadius: '50%', padding: '0px 5px'}} onClick={this.moveLeft}>
+          <button id="left" style={{
+            background: 'rgba(0, 0, 0, 0.3)',
+            borderRadius: '50%',
+            padding: '0px 5px',
+            position: 'absolute',
+            top: '225px'
+          }} onClick={this.moveLeft}>
             <div style={{
               fontSize: '18px',
               padding: '5px 6px 3px 3px'
@@ -140,7 +146,13 @@ class Slider extends React.Component {
             <i className="fa fa-chevron-left" aria-hidden="true"></i>
             </div>
           </button>
-          <button id="right" style={{background: 'rgba(0, 0, 0, 0.3)', borderRadius: '50%', padding: '0px 5px'}} onClick={this.moveRight}>
+          <button id="right" style={{
+            background: 'rgba(0, 0, 0, 0.3)',
+            borderRadius: '50%',
+            padding: '0px 5px',
+            position: 'absolute',
+            top: '225px'
+          }} onClick={this.moveRight}>
             <div style={{
               fontSize: '18px',
               padding: '5px 4px 3px 6px'
