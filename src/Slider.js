@@ -8,6 +8,7 @@ class Item extends React.Component {
     this.state = {
       content: this.props.items.map(item=>item.description),
       title: this.props.items.map(item=>item.title),
+      buttonLabel: this.props.items.map(item=>item.buttonLabel),
       image: this.props.items.map(item=>item.image1)
     }
   }
@@ -25,8 +26,8 @@ class Item extends React.Component {
             backgroundPosition: 'center',
             backgroundImage: `url("${this.state.image[item]?.results?.[0]?.fileUrl}")`
           }}>
-            <h1 style={{marginTop:'2px', padding:'0px 50px', fontSize:'35px'}}>{this.state.title[item]}</h1>
-            <p style={{marginTop:0, fontSize: '25px', fontWeight:400, padding:'0px 60px'}}>
+            <h2 style={{marginTop:'2px'}}>{this.state.title[item]}</h2>
+            <p style={{marginTop:0}}>
               {this.state.content[item]}
               {this.props.noButtons !== 'true' && (<div>
                 <button style={{
@@ -34,12 +35,7 @@ class Item extends React.Component {
                   display: 'inline',
                   top: '0',
                   position: 'relative',
-                  background: '#4A37D5',
-                  borderRadius: '4px',
-                  color: 'white',
-                  padding: '12px',
-                  fontSize: '14px'
-                }}>Click me
+                }}>{this.state.buttonLabel[item]}
                 </button>
               </div>)}
             </p>
@@ -49,8 +45,8 @@ class Item extends React.Component {
       return (
           <div className={className} id={id}  style={{display: 'flex', flexDirection: 'row'}}>
             <div style={{width:'50%', display:'flex', flexDirection:'column', alignSelf: 'center'}}>
-              <h1 style={{marginTop:'2px', fontSize:'35px'}}>{this.state.title[item]}</h1>
-              <p style={{marginTop:0, fontSize: '25px', fontWeight:400, padding:'10px'}}>
+              <h2 style={{marginTop:'2px'}}>{this.state.title[item]}</h2>
+              <p style={{marginTop:0, padding:'10px'}}>
                 {this.state.content[item]}
                 {this.props.noButtons !== 'true'  && (<div>
                   <button style={{
@@ -58,12 +54,7 @@ class Item extends React.Component {
                     display: 'inline',
                     top: '0',
                     position: 'relative',
-                    background: '#4A37D5',
-                    borderRadius: '4px',
-                    color: 'white',
-                    padding: '12px',
-                    fontSize: '14px'
-                  }}>Click me
+                  }}>{this.state.buttonLabel[item]}
                   </button>
                 </div>)}
               </p>
