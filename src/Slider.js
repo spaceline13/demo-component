@@ -98,9 +98,8 @@ class Slider extends React.Component {
 }
 
 const schema = {
-  title: 'Slider',
+  name: 'Slider',
   description: 'Edit slider options:',
-  type: 'object',
   required: [],
   properties: {
     noButtons: {

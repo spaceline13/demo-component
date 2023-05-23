@@ -6,7 +6,7 @@ import Slider from "./Slider";
 function App() {
     /* example of preview route with react router */
 
-    FEAAS.External.setRegistrationCallback()
+    //FEAAS.External.setRegistrationCallback()
     return (
         <Routes>
             {/* your routes here */}
