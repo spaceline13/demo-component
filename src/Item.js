@@ -27,7 +27,7 @@ class Item extends React.Component {
                     <h2 style={{marginTop:'2px'}}>{this.state.title[item]}</h2>
                     <p style={{marginTop:0}}>
                         {this.state.content[item]}
-                        {this.props.noButtons !== 'true' && (<div>
+                        {!this.props.noButtons  && (<div>
                             <button style={{
                                 marginTop: '18px',
                                 display: 'inline',
@@ -46,7 +46,7 @@ class Item extends React.Component {
                         <h2 style={{marginTop:'2px'}}>{this.state.title[item]}</h2>
                         <p style={{marginTop:0, padding:'10px'}}>
                             {this.state.content[item]}
-                            {this.props.noButtons !== 'true'  && (<div>
+                            {!this.props.noButtons && (<div>
                                 <button style={{
                                     marginTop: '18px',
                                     display: 'inline',
